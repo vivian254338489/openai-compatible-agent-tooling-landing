@@ -14,6 +14,7 @@ for (const text of [
   "openai-compatible-provider-migration-ci-kit",
   "openai-compatible-prompt-regression-ci-kit",
   "openai-compatible-gateway-eval-harness",
+  "openai-compatible-billing-reconciliation-kit",
   "openai-compatible-cost-guardrail-kit",
   "Disclosure"
 ]) {
