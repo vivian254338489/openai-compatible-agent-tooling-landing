@@ -1,0 +1,20 @@
+{
+  "name": "openai-compatible-agent-tooling-landing",
+  "version": "0.1.0",
+  "description": "Static GitHub Pages landing page for OpenAI-compatible agent tooling and TKEN endpoint evaluation.",
+  "type": "module",
+  "scripts": {
+    "check": "node scripts/check.js && node scripts/scan-secrets.js",
+    "scan:secrets": "node scripts/scan-secrets.js"
+  },
+  "keywords": [
+    "openai-compatible",
+    "agent-tooling",
+    "mcp",
+    "github-pages",
+    "landing-page",
+    "tken"
+  ],
+  "license": "MIT",
+  "homepage": "https://vivian254338489.github.io/openai-compatible-agent-tooling-landing/"
+}

@@ -1,0 +1,332 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>OpenAI-Compatible Agent Tooling</title>
+    <meta
+      name="description"
+      content="A practical toolkit for testing OpenAI-compatible endpoints with MCP, coding agents, Open WebUI, LiteLLM, Cursor, Continue, JSON mode, retries, and routing."
+    />
+    <meta property="og:title" content="OpenAI-Compatible Agent Tooling" />
+    <meta
+      property="og:description"
+      content="Free GitHub tools for OpenAI-compatible endpoint setup, diagnostics, agent configs, retries, and model routing."
+    />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://vivian254338489.github.io/openai-compatible-agent-tooling-landing/" />
+    <style>
+      :root {
+        color-scheme: light;
+        --ink: #12151c;
+        --muted: #596170;
+        --line: #d9dee7;
+        --paper: #f6f7f9;
+        --accent: #0b6bcb;
+        --accent-2: #0f8a70;
+        --white: #ffffff;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+        color: var(--ink);
+        background: var(--paper);
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .hero {
+        min-height: 92svh;
+        display: grid;
+        align-items: center;
+        padding: 32px clamp(20px, 6vw, 86px);
+        background:
+          linear-gradient(90deg, rgba(246, 247, 249, 0.96), rgba(246, 247, 249, 0.74) 48%, rgba(246, 247, 249, 0.2)),
+          url("assets/agent-workflow.svg") right center / min(760px, 62vw) auto no-repeat,
+          #f6f7f9;
+      }
+
+      .hero-inner {
+        max-width: 760px;
+        animation: rise 640ms ease-out both;
+      }
+
+      .eyebrow {
+        margin: 0 0 18px;
+        color: var(--accent-2);
+        font-size: 0.84rem;
+        font-weight: 750;
+        text-transform: uppercase;
+      }
+
+      h1 {
+        margin: 0;
+        max-width: 700px;
+        font-size: clamp(2.8rem, 7vw, 6.5rem);
+        line-height: 0.95;
+        letter-spacing: 0;
+      }
+
+      .hero p {
+        max-width: 620px;
+        margin: 24px 0 0;
+        color: var(--muted);
+        font-size: clamp(1.04rem, 2vw, 1.32rem);
+        line-height: 1.55;
+      }
+
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 34px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        min-height: 46px;
+        padding: 12px 18px;
+        border-radius: 6px;
+        border: 1px solid var(--ink);
+        text-decoration: none;
+        font-weight: 750;
+        transition: transform 160ms ease, background 160ms ease, color 160ms ease;
+      }
+
+      .button.primary {
+        background: var(--ink);
+        color: var(--white);
+      }
+
+      .button:hover {
+        transform: translateY(-2px);
+      }
+
+      main {
+        background: var(--white);
+      }
+
+      section {
+        padding: 84px clamp(20px, 6vw, 86px);
+        border-top: 1px solid var(--line);
+      }
+
+      .section-head {
+        display: grid;
+        gap: 12px;
+        max-width: 760px;
+        margin-bottom: 34px;
+      }
+
+      h2 {
+        margin: 0;
+        font-size: clamp(2rem, 4vw, 3.4rem);
+        line-height: 1.04;
+        letter-spacing: 0;
+      }
+
+      .section-head p {
+        margin: 0;
+        color: var(--muted);
+        font-size: 1.05rem;
+        line-height: 1.6;
+      }
+
+      .matrix {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1px;
+        background: var(--line);
+        border: 1px solid var(--line);
+      }
+
+      .item {
+        min-height: 168px;
+        background: var(--white);
+        padding: 22px;
+        text-decoration: none;
+        transition: background 160ms ease;
+      }
+
+      .item:hover {
+        background: #f3f7fb;
+      }
+
+      .item span {
+        display: block;
+        color: var(--accent);
+        font-size: 0.78rem;
+        font-weight: 760;
+        text-transform: uppercase;
+      }
+
+      .item strong {
+        display: block;
+        margin-top: 12px;
+        font-size: 1.08rem;
+      }
+
+      .item p {
+        margin: 10px 0 0;
+        color: var(--muted);
+        line-height: 1.48;
+      }
+
+      .workflow {
+        display: grid;
+        grid-template-columns: 0.75fr 1.25fr;
+        gap: clamp(28px, 5vw, 72px);
+        align-items: start;
+      }
+
+      ol {
+        display: grid;
+        gap: 18px;
+        margin: 0;
+        padding-left: 1.4rem;
+        color: var(--muted);
+        line-height: 1.62;
+      }
+
+      li strong {
+        color: var(--ink);
+      }
+
+      .final {
+        background: #10141d;
+        color: var(--white);
+      }
+
+      .final p {
+        color: #c7d0de;
+      }
+
+      .final .button {
+        border-color: var(--white);
+      }
+
+      .final .button.primary {
+        background: var(--white);
+        color: #10141d;
+      }
+
+      footer {
+        padding: 28px clamp(20px, 6vw, 86px);
+        color: var(--muted);
+        background: #10141d;
+        border-top: 1px solid rgba(255, 255, 255, 0.16);
+      }
+
+      @keyframes rise {
+        from {
+          opacity: 0;
+          transform: translateY(18px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      @media (max-width: 900px) {
+        .hero {
+          min-height: auto;
+          padding-top: 72px;
+          padding-bottom: 76px;
+          background:
+            linear-gradient(180deg, rgba(246, 247, 249, 0.98), rgba(246, 247, 249, 0.9)),
+            url("assets/agent-workflow.svg") center bottom / 92vw auto no-repeat,
+            #f6f7f9;
+        }
+
+        .hero-inner {
+          padding-bottom: min(54vw, 280px);
+        }
+
+        .matrix,
+        .workflow {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero-inner">
+        <p class="eyebrow">OpenAI-compatible agent tooling</p>
+        <h1>Test the endpoint before the agent depends on it.</h1>
+        <p>
+          Free GitHub tools for MCP, Claude Desktop, Cursor, Continue, Open WebUI, LiteLLM,
+          JSON mode, retries, and model routing. TKEN is one disclosed endpoint you can evaluate.
+        </p>
+        <div class="actions">
+          <a class="button primary" href="https://www.tken.shop/?utm_source=github_pages&utm_medium=landing&utm_campaign=agent_tooling_landing&utm_content=hero_cta">Try TKEN endpoint</a>
+          <a class="button" href="https://github.com/vivian254338489/tken-awesome-openai-compatible">Open GitHub toolkit</a>
+        </div>
+      </div>
+    </header>
+
+    <main>
+      <section>
+        <div class="section-head">
+          <h2>Pick the setup problem.</h2>
+          <p>Each repo solves one narrow compatibility problem and links back to the endpoint evaluation path.</p>
+        </div>
+        <div class="matrix">
+          <a class="item" href="https://github.com/vivian254338489/openai-compatible-mcp-server"><span>MCP</span><strong>Endpoint diagnostics server</strong><p>Check base URL, models, chat, embeddings, and compatibility reports.</p></a>
+          <a class="item" href="https://github.com/vivian254338489/claude-desktop-mcp-openai-compatible-bridge-kit"><span>Claude</span><strong>Desktop MCP bridge kit</strong><p>Prepare local MCP config snippets and safety notes.</p></a>
+          <a class="item" href="https://github.com/vivian254338489/openwebui-openai-compatible-setup-wizard"><span>Open WebUI</span><strong>Provider setup wizard</strong><p>Generate env examples, RAG notes, and smoke tests.</p></a>
+          <a class="item" href="https://github.com/vivian254338489/litellm-openai-compatible-config-wizard"><span>LiteLLM</span><strong>Config wizard</strong><p>Create provider YAML, fallback notes, and route smoke tests.</p></a>
+          <a class="item" href="https://github.com/vivian254338489/cursor-openai-compatible-config-wizard"><span>Cursor</span><strong>Provider notes</strong><p>Prepare model aliases, base URL notes, and chat smoke tests.</p></a>
+          <a class="item" href="https://github.com/vivian254338489/continue-openai-compatible-config-wizard"><span>Continue</span><strong>Config wizard</strong><p>Generate coding assistant config JSON and embeddings notes.</p></a>
+          <a class="item" href="https://github.com/vivian254338489/openai-compatible-json-mode-validator"><span>JSON</span><strong>Structured output validator</strong><p>Test whether JSON mode behaves before production workflows.</p></a>
+          <a class="item" href="https://github.com/vivian254338489/openai-compatible-rate-limit-retry-kit"><span>Reliability</span><strong>Retry and fallback kit</strong><p>Handle 429s, timeouts, backoff, jitter, and fallback routes.</p></a>
+          <a class="item" href="https://github.com/vivian254338489/openai-compatible-model-route-decider"><span>Routing</span><strong>Model route decider</strong><p>Choose routes by task type, budget preference, latency, JSON, vision, and tools.</p></a>
+        </div>
+      </section>
+
+      <section>
+        <div class="workflow">
+          <div class="section-head">
+            <h2>Use it as a customer funnel.</h2>
+            <p>Developers land on a specific setup tool, then move to a working endpoint when they need a real provider.</p>
+          </div>
+          <ol>
+            <li><strong>Diagnose:</strong> run a local compatibility check before changing app code.</li>
+            <li><strong>Configure:</strong> generate provider notes for Open WebUI, LiteLLM, Claude Desktop, Cursor, or Continue.</li>
+            <li><strong>Stabilize:</strong> test JSON mode, retries, embeddings, and model route decisions.</li>
+            <li><strong>Evaluate:</strong> use TKEN as one disclosed OpenAI-compatible endpoint for testing.</li>
+          </ol>
+        </div>
+      </section>
+
+      <section class="final">
+        <div class="section-head">
+          <h2>Need an endpoint to test?</h2>
+          <p>Start with the disclosed example endpoint, then verify model names, pricing, limits, and terms before production use.</p>
+        </div>
+        <div class="actions">
+          <a class="button primary" href="https://www.tken.shop/?utm_source=github_pages&utm_medium=landing&utm_campaign=agent_tooling_landing&utm_content=final_cta">Visit TKEN</a>
+          <a class="button" href="https://github.com/vivian254338489/tken-awesome-openai-compatible">Browse all tools</a>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      Disclosure: this page is maintained by TKEN-related tooling contributors. Verify provider docs and terms before production use.
+    </footer>
+  </body>
+</html>

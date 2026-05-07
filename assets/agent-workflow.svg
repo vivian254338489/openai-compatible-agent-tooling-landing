@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 700" role="img" aria-label="Agent workflow diagram">
+  <rect width="900" height="700" fill="#eef2f6"/>
+  <g fill="none" stroke="#12151c" stroke-width="3">
+    <path d="M92 350h716"/>
+    <path d="M450 92v516"/>
+    <circle cx="450" cy="350" r="116" fill="#ffffff"/>
+    <circle cx="172" cy="350" r="74" fill="#ffffff"/>
+    <circle cx="728" cy="350" r="74" fill="#ffffff"/>
+    <circle cx="450" cy="142" r="64" fill="#ffffff"/>
+    <circle cx="450" cy="558" r="64" fill="#ffffff"/>
+  </g>
+  <g font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#12151c" text-anchor="middle">
+    <text x="450" y="342">TKEN</text>
+    <text x="450" y="377" font-size="18" fill="#596170">/v1</text>
+    <text x="172" y="359">MCP</text>
+    <text x="728" y="359">Agents</text>
+    <text x="450" y="151">Config</text>
+    <text x="450" y="567">Tests</text>
+  </g>
+  <g fill="#0b6bcb">
+    <circle cx="302" cy="350" r="8"/>
+    <circle cx="598" cy="350" r="8"/>
+    <circle cx="450" cy="244" r="8"/>
+    <circle cx="450" cy="456" r="8"/>
+  </g>
+</svg>
