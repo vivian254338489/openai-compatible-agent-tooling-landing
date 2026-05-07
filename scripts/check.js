@@ -11,6 +11,10 @@ for (const text of [
   "tken-awesome-openai-compatible",
   "openai-compatible-mcp-server",
   "claude-desktop-mcp-openai-compatible-bridge-kit",
+  "openai-compatible-provider-migration-ci-kit",
+  "openai-compatible-prompt-regression-ci-kit",
+  "openai-compatible-gateway-eval-harness",
+  "openai-compatible-cost-guardrail-kit",
   "Disclosure"
 ]) {
   if (!html.includes(text)) throw new Error(`index.html missing: ${text}`);

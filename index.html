@@ -192,6 +192,46 @@
         align-items: start;
       }
 
+      .pathways {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1px;
+        background: var(--line);
+        border: 1px solid var(--line);
+      }
+
+      .pathway {
+        background: #f9fbfd;
+        min-height: 190px;
+        padding: 24px;
+        text-decoration: none;
+        transition: background 160ms ease;
+      }
+
+      .pathway:hover {
+        background: #eef6f4;
+      }
+
+      .pathway span {
+        color: var(--accent-2);
+        display: block;
+        font-size: 0.78rem;
+        font-weight: 760;
+        text-transform: uppercase;
+      }
+
+      .pathway strong {
+        display: block;
+        margin-top: 12px;
+        font-size: 1.08rem;
+      }
+
+      .pathway p {
+        margin: 10px 0 0;
+        color: var(--muted);
+        line-height: 1.48;
+      }
+
       ol {
         display: grid;
         gap: 18px;
@@ -257,6 +297,7 @@
         }
 
         .matrix,
+        .pathways,
         .workflow {
           grid-template-columns: 1fr;
         }
@@ -310,6 +351,19 @@
             <li><strong>Stabilize:</strong> test JSON mode, retries, embeddings, and model route decisions.</li>
             <li><strong>Evaluate:</strong> use TKEN as one disclosed OpenAI-compatible endpoint for testing.</li>
           </ol>
+        </div>
+      </section>
+
+      <section>
+        <div class="section-head">
+          <h2>Put checks in the pull request.</h2>
+          <p>Teams changing prompts, model aliases, gateway routes, or provider settings need repeatable preflight checks before they send production traffic.</p>
+        </div>
+        <div class="pathways">
+          <a class="pathway" href="https://github.com/vivian254338489/openai-compatible-provider-migration-ci-kit"><span>Migration CI</span><strong>Block risky provider switches</strong><p>Check routes, capabilities, model aliases, and rollback readiness before a base URL change ships.</p></a>
+          <a class="pathway" href="https://github.com/vivian254338489/openai-compatible-prompt-regression-ci-kit"><span>Prompt CI</span><strong>Catch output regressions</strong><p>Compare prompt cases, baselines, JSON expectations, forbidden phrases, and route capability drift.</p></a>
+          <a class="pathway" href="https://github.com/vivian254338489/openai-compatible-gateway-eval-harness"><span>Eval</span><strong>Compare gateway routes</strong><p>Run offline eval-case and route-fixture checks before agents depend on a new gateway.</p></a>
+          <a class="pathway" href="https://github.com/vivian254338489/openai-compatible-cost-guardrail-kit"><span>Cost</span><strong>Stop budget drift</strong><p>Review gateway usage logs against soft and hard budget policies before rollout expands.</p></a>
         </div>
       </section>
 
