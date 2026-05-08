@@ -194,7 +194,7 @@
 
       .pathways {
         display: grid;
-        grid-template-columns: repeat(5, minmax(0, 1fr));
+        grid-template-columns: repeat(6, minmax(0, 1fr));
         gap: 1px;
         background: var(--line);
         border: 1px solid var(--line);
@@ -361,6 +361,7 @@
         </div>
         <div class="pathways">
           <a class="pathway" href="https://github.com/vivian254338489/openai-compatible-provider-migration-ci-kit"><span>Migration CI</span><strong>Block risky provider switches</strong><p>Check routes, capabilities, model aliases, and rollback readiness before a base URL change ships.</p></a>
+          <a class="pathway" href="https://github.com/vivian254338489/openai-compatible-api-key-rotation-kit"><span>Keys</span><strong>Rotate before cutover</strong><p>Check env names, smoke tests, rollback readiness, and revoke steps before switching gateway keys.</p></a>
           <a class="pathway" href="https://github.com/vivian254338489/openai-compatible-prompt-regression-ci-kit"><span>Prompt CI</span><strong>Catch output regressions</strong><p>Compare prompt cases, baselines, JSON expectations, forbidden phrases, and route capability drift.</p></a>
           <a class="pathway" href="https://github.com/vivian254338489/openai-compatible-gateway-eval-harness"><span>Eval</span><strong>Compare gateway routes</strong><p>Run offline eval-case and route-fixture checks before agents depend on a new gateway.</p></a>
           <a class="pathway" href="https://github.com/vivian254338489/openai-compatible-billing-reconciliation-kit"><span>Billing</span><strong>Reconcile usage and charges</strong><p>Compare gateway usage logs with balance or invoice rows before billing questions reach customers.</p></a>
